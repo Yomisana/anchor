@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 export default function App() {
-  const [subtitle_text, setSubtitle_text] = useState("your project");
+  const [subtitle_text, setSubtitle_text] = useState("Anchor");
   const [prevIndex, setPrevIndex] = useState(null);
 
   useEffect(() => {
@@ -20,11 +20,11 @@ export default function App() {
         index = Math.floor(Math.random() * text_array.length);
       }
       // add timestamp
-      console.log(`subtitle tick active`);
+      console.log(`subtitle tick active: ${new Date().toLocaleTimeString()}`);
       // console.log(`now subtitle: ${text_array[index]}, num: ${index}`);
       setSubtitle_text(text_array[index]);
       setPrevIndex(index);
-    }, 5000);
+    }, 1000);
 
     return () => clearInterval(intervalId); // 清除定時器
   }, [prevIndex]); // 當 prevIndex 改變時重新執行
