@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Typewriter } from "./lib/Typewriter";
 
 export default function App() {
   const [subtitle_text, setSubtitle_text] = useState("Anchor");
@@ -24,7 +25,7 @@ export default function App() {
       // console.log(`now subtitle: ${text_array[index]}, num: ${index}`);
       setSubtitle_text(text_array[index]);
       setPrevIndex(index);
-    }, 1000);
+    }, 5000);
 
     return () => clearInterval(intervalId); // 清除定時器
   }, [prevIndex]); // 當 prevIndex 改變時重新執行
@@ -40,7 +41,7 @@ export default function App() {
           wordWrap: "break-word",
         }}
       >
-        Easy using portable python for {subtitle_text}.
+        Easy using portable python for <Typewriter text={subtitle_text} />.
       </div>
       {/* h2 or span status about select python installed or not install */}
       <h2 style={styles.status}>Status: ✅ Installed | ❌ Not Installed</h2>
