@@ -1,5 +1,7 @@
 {
   "name": "anchor",
+  "description": "Anchor. Easy to using portable python without anaconda",
+  "author": "Yomisana",
   "version": "0.1.0",
   "private": true,
   "main": "main.js",
