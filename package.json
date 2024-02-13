@@ -22,6 +22,7 @@
     "electron_start": "wait-on tcp:3000 && electron .",
     "react_start": "cross-env BROWSER=none react-scripts start",
     "start": "react-scripts start",
+    "build_yomisana": "npm run build && node build.js",
     "electron-build": "npm run build && node build.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
