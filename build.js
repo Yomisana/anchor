@@ -14,7 +14,7 @@ builder.build({
         },
         // 設定打包後的 icon
         'win': {
-            'icon': path.resolve(__dirname, 'public/icon.png'), 
+            'icon': path.resolve(__dirname, 'public/logo512.png'), 
         },
         // 'mac': {
         //     'icon': path.resolve(__dirname, 'public/icon.png'),
