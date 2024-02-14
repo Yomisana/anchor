@@ -6,7 +6,7 @@ export default function App() {
   const [prevIndex, setPrevIndex] = useState(null);
 
   // select python version
-  const [selectedVersion, setSelectedVersion] = useState("3.10.13");
+  const [selectedVersion, setSelectedVersion] = useState("3.10.11");
 
   const handleVersionChange = (event) => {
     // console.log(`使用者變更選擇: ${event.target.value}`);
@@ -72,8 +72,6 @@ export default function App() {
         <option value="3.10.9">Python 3.10.9</option>
         <option value="3.10.10">Python 3.10.10</option>
         <option value="3.10.11">Python 3.10.11</option>
-        <option value="3.10.12">Python 3.10.12</option>
-        <option value="3.10.13">Python 3.10.13</option>
       </select>
       {/* Open default Terminal app (set path about select installed portable python) */}
       <div style={{ flexDirection: "row", alignSelf: "center" }}>
