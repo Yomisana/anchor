@@ -6,16 +6,16 @@ export default function App() {
   const [prevIndex, setPrevIndex] = useState(null);
 
   // select python version
-  const [selectedVersion, setSelectedVersion] = useState("3.10.11");
+  const [selectedpyVersion, setSelectedpyVersion] = useState("3.10.11");
 
   const handleVersionChange = (event) => {
     // console.log(`使用者變更選擇: ${event.target.value}`);
-    setSelectedVersion(event.target.value);
+    setSelectedpyVersion(event.target.value);
   };
 
   useEffect(() => {
-    console.log(`當前python選擇版本: ${selectedVersion}`);
-  }, [selectedVersion]);
+    console.log(`當前python選擇版本: ${selectedpyVersion}`);
+  }, [selectedpyVersion]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -44,6 +44,15 @@ export default function App() {
     return () => clearInterval(intervalId); // 清除定時器
   }, [prevIndex]); // 當 prevIndex 改變時重新執行
 
+  const openTerminal = () => {
+    console.log("open terminal");
+    // 在這裡可以訪問 selectedVersion
+  };
+
+  const download = () => {
+    console.log(`download python portable version: ${selectedpyVersion}`);
+  };
+
   return (
     <div style={styles.container}>
       {/* Title */}
@@ -61,9 +70,10 @@ export default function App() {
       {/* ✅ Installed | ❌ Not Installed */}
       <h2 style={styles.status}>Status: ❌ Not Installed</h2>
       {/* Choose python version */}
+      {/* https://www.python.org/ftp/python/3.10.11/python-3.10.11-embed-amd64.zip */}
       <select
         style={styles.select}
-        defaultValue={selectedVersion}
+        defaultValue={selectedpyVersion}
         onChange={handleVersionChange}
       >
         <option value="3.10.6">Python 3.10.6</option>
@@ -82,17 +92,20 @@ export default function App() {
           Download
         </button>
       </div>
+      {/* Download progress */}
+      <div
+        style={{ flexDirection: "column", alignSelf: "center", width: "80%" }}
+      >
+        {/* Preparing... | Downloading... | Installing... | Finished! | Error! | Failed... */}
+        <h2 style={styles.progress_status}>Preparing...</h2>
+
+        <progress value="20" max="100" style={styles.progress}></progress>
+      </div>
+      {/* Setting */}
+      {/* Language */}
     </div>
   );
 }
-
-const openTerminal = () => {
-  console.log("open terminal");
-};
-const download = () => {
-  console.log("download");
-  // console.log(`download python portable version: ${selectedVersion}`);
-};
 
 const styles = {
   container: {
@@ -138,5 +151,13 @@ const styles = {
     borderRadius: "50px",
     marginLeft: "10px",
     marginRight: "10px",
+  },
+  progress_status: {
+    fontSize: "1.2rem",
+    color: "white",
+  },
+  progress: {
+    width: "100%",
+    padding: "10px",
   },
 };
