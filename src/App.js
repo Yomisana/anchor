@@ -5,6 +5,18 @@ export default function App() {
   const [subtitle_text, setSubtitle_text] = useState("Anchor");
   const [prevIndex, setPrevIndex] = useState(null);
 
+  // select python version
+  const [selectedVersion, setSelectedVersion] = useState("3.10.13");
+
+  const handleVersionChange = (event) => {
+    // console.log(`使用者變更選擇: ${event.target.value}`);
+    setSelectedVersion(event.target.value);
+  };
+
+  useEffect(() => {
+    console.log(`當前python選擇版本: ${selectedVersion}`);
+  }, [selectedVersion]);
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       const text_array = [
@@ -12,6 +24,8 @@ export default function App() {
         "stable diffusion webui",
         "switch python version",
         "manger python",
+        "debugger",
+        "🌕",
       ];
 
       let index = Math.floor(Math.random() * text_array.length);
@@ -21,7 +35,7 @@ export default function App() {
         index = Math.floor(Math.random() * text_array.length);
       }
       // add timestamp
-      console.log(`subtitle tick active: ${new Date().toLocaleTimeString()}`);
+      // console.log(`subtitle tick active: ${new Date().toLocaleTimeString()}`);
       // console.log(`now subtitle: ${text_array[index]}, num: ${index}`);
       setSubtitle_text(text_array[index]);
       setPrevIndex(index);
@@ -41,23 +55,46 @@ export default function App() {
           wordWrap: "break-word",
         }}
       >
-        Easy using portable python for <Typewriter text={subtitle_text} />.
+        Easy using portable python for <Typewriter text={subtitle_text} />
       </div>
       {/* h2 or span status about select python installed or not install */}
-      <h2 style={styles.status}>Status: ✅ Installed | ❌ Not Installed</h2>
+      {/* ✅ Installed | ❌ Not Installed */}
+      <h2 style={styles.status}>Status: ❌ Not Installed</h2>
       {/* Choose python version */}
-      <select style={styles.select}>
-        <option value="3.8">Python 3.8</option>
-        <option value="3.9">Python 3.9</option>
+      <select
+        style={styles.select}
+        defaultValue={selectedVersion}
+        onChange={handleVersionChange}
+      >
+        <option value="3.10.6">Python 3.10.6</option>
+        <option value="3.10.7">Python 3.10.7</option>
+        <option value="3.10.8">Python 3.10.8</option>
+        <option value="3.10.9">Python 3.10.9</option>
+        <option value="3.10.10">Python 3.10.10</option>
+        <option value="3.10.11">Python 3.10.11</option>
+        <option value="3.10.12">Python 3.10.12</option>
+        <option value="3.10.13">Python 3.10.13</option>
       </select>
       {/* Open default Terminal app (set path about select installed portable python) */}
       <div style={{ flexDirection: "row", alignSelf: "center" }}>
-        <button style={styles.button}>Open Terminal</button>
-        <button style={styles.button}>Download</button>
+        <button style={styles.button} onClick={openTerminal}>
+          Open Terminal
+        </button>
+        <button style={styles.button} onClick={download}>
+          Download
+        </button>
       </div>
     </div>
   );
 }
+
+const openTerminal = () => {
+  console.log("open terminal");
+};
+const download = () => {
+  console.log("download");
+  // console.log(`download python portable version: ${selectedVersion}`);
+};
 
 const styles = {
   container: {
