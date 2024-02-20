@@ -19,7 +19,9 @@
   },
   "scripts": {
     "debug_yomisana": "concurrently \"npm run react_start\" \"npm run electron_start\"",
+    "debug_yomisana_v2": "concurrently \"npm run react_start\" \"npm run electron_start_v2\"",
     "electron_start": "wait-on tcp:3000 && electron .",
+    "electron_start_v2": "wait-on tcp:3000 && nodemon --watch main.js --exec electron .",
     "react_start": "cross-env BROWSER=none react-scripts start",
     "start": "react-scripts start",
     "build_yomisana": "npm run build && node build.js",
@@ -50,6 +52,7 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "concurrently": "^8.2.2",
     "electron": "^28.2.2",
-    "electron-builder": "^24.9.1"
+    "electron-builder": "^24.9.1",
+    "nodemon": "^3.0.3"
   }
 }
