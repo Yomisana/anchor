@@ -2,6 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Typewriter } from "./lib/Typewriter";
 
 export default function App() {
+  // electron ipc
+  window.api.receive("fromMain", (data) => {
+    console.log(`收到來自後端的訊息: ${data}`);
+    switch (data[0]) {
+      case "python_status":
+        console.log(`python_status: ${data[1]} are installed: ${data[2]}`);
+        break;
+      default:
+        console.log(`no match: ${data}`);
+    }
+  });
+  // react state
   const [subtitle_text, setSubtitle_text] = useState("Anchor");
   const [prevIndex, setPrevIndex] = useState(null);
 
@@ -14,7 +26,8 @@ export default function App() {
   };
 
   useEffect(() => {
-    console.log(`當前python選擇版本: ${selectedpyVersion}`);
+    // console.log(`當前python選擇版本: ${selectedpyVersion}`);
+    window.api.send("toMain", ["python_version", selectedpyVersion]);
   }, [selectedpyVersion]);
 
   useEffect(() => {
